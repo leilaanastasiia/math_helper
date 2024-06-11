@@ -9,6 +9,13 @@ def test_invalid_shape():
     assert str(err_info.value) == "An unavailable shape. Try again."
 
 
+def test_valid_shape():
+    result = parse_input("Square TopRight 2 2 Side 5")
+    assert result.perimeter() == 20
+    assert result.area() == 25
+    assert isinstance(result, Square)
+
+
 def test_square_valid_input():
     square = Square("Square TopRight 2 2 Side 5")
     assert square.perimeter() == 20

@@ -124,14 +124,15 @@ def parse_input(user_input: str) -> Shape:
     """Choose an available shape."""
     parsed = user_input.split()
     shape = parsed[0]
-    if shape == 'Square':
-        return Square(user_input)
-    elif shape == 'Rectangle':
-        return Rectangle(user_input)
-    elif shape == 'Circle':
-        return Circle(user_input)
-    elif shape == 'Triangle':
-        return Triangle(user_input)
+    shapes = {
+        'Square': Square,
+        'Rectangle': Rectangle,
+        'Circle': Circle,
+        'Triangle': Triangle,
+    }
+    cls = shapes.get(shape)
+    if cls is not None:
+        return cls(user_input)
     else:
         raise ValueError('An unavailable shape. Try again.')
 
