@@ -83,3 +83,23 @@ def test_triangle_lost_parameters():
     with pytest.raises(ValueError) as err_info:
         Triangle("Triangle Point1 5 5 ")
     assert str(err_info.value) == "Please, enter all parameters as shown in the example above."
+
+
+def test_rectangle_attributes():
+    rectangle = Rectangle("Rectangle TopRight 3 3 BottomLeft 1 1")
+    assert rectangle.top_right_x == 3
+    assert rectangle.top_right_y == 3
+    assert rectangle.bottom_left_x == 1
+    assert rectangle.bottom_left_y == 1
+    assert rectangle.width == 2
+    assert rectangle.height == 2
+
+
+def test_square_attributes():
+    square = Square("Square TopRight 2 2 Side 2")
+    assert square.top_right_x == 2
+    assert square.top_right_y == 2
+    assert square.bottom_left_x == 0
+    assert square.bottom_left_y == 0
+    assert square.width == 2
+    assert square.height == 2

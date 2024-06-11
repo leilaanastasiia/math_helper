@@ -22,28 +22,6 @@ class Shape(ABC):
         return f'{self.shape} Perimeter {self.perimeter()} Area {self.area()}'
 
 
-class Square(Shape):
-    """Class for a square shape."""
-
-    def __init__(self, user_input: str):
-        parsed = user_input.split()
-        if len(parsed) == 6:
-            super().__init__(parsed[0])
-            self.top_right_x = float(parsed[2])
-            self.top_right_y = float(parsed[3])
-            self.side = float(parsed[5])
-            if self.side < 0:
-                raise ValueError("Side's value can be only positive")
-        else:
-            raise ValueError('Please, enter all parameters as shown in the example above.')
-
-    def perimeter(self) -> float:
-        return 4 * self.side
-
-    def area(self) -> float:
-        return self.side * self.side
-
-
 class Rectangle(Shape):
     """Class for a rectangle shape."""
 
@@ -69,6 +47,21 @@ class Rectangle(Shape):
 
     def area(self) -> float:
         return self.width * self.height
+
+
+class Square(Rectangle):
+    """Class for a square shape."""
+
+    def __init__(self, user_input: str):
+        parsed = user_input.split()
+        if len(parsed) == 6:
+            self.side = float(parsed[5])
+            if self.side < 0:
+                raise ValueError("Side's value can be only positive")
+            user_input = str(f'{parsed[0]} TopRight {float(parsed[2])} {float(parsed[3])} BottomLeft {float(parsed[2]) - float(parsed[5])} {float(parsed[3]) - float(parsed[5])}')
+            super().__init__(user_input)
+        else:
+            raise ValueError('Please, enter all parameters as shown in the example above.')
 
 
 class Circle(Shape):
