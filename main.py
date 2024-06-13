@@ -58,7 +58,10 @@ class Square(Rectangle):
             self.side = float(parsed[5])
             if self.side < 0:
                 raise ValueError("Side's value can be only positive")
-            user_input = str(f'{parsed[0]} TopRight {float(parsed[2])} {float(parsed[3])} BottomLeft {float(parsed[2]) - float(parsed[5])} {float(parsed[3]) - float(parsed[5])}')
+            user_input = str(f'{parsed[0]} '
+                             f'TopRight {float(parsed[2])} {float(parsed[3])} '
+                             f'BottomLeft {float(parsed[2]) - float(parsed[5])} '
+                             f'{float(parsed[3]) - float(parsed[5])}')
             super().__init__(user_input)
         else:
             raise ValueError('Please, enter all parameters as shown in the example above.')
